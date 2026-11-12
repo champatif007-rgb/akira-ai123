@@ -1,17 +1,11 @@
 # Akira AI — deploy like the public demo (no visitor sign-in)
 
-Visitors never paste an API key. The key stays in Netlify.
+Visitors never paste an API key. The modern Netlify chat function uses AI Gateway's automatically injected Gemini credentials.
 
-## 1. Get a free Gemini key
-https://aistudio.google.com/app/apikey  
-(No credit card.)
+## Deploy on Netlify
+This is a static site with no build step. Leave the build command empty and use `public` as the publish directory, as configured in `netlify.toml`. The page lives at `public/index.html`; server functions live in `netlify/functions`. Netlify installs the Gemini SDK from `package.json`.
 
-## 2. Deploy on Netlify
-1. Push this folder to GitHub, or drag the whole folder into Netlify’s “Deploy manually”.
-2. Site settings → **Environment variables** → add:
-   - **Key:** `GEMINI_API_KEY`
-   - **Value:** your Gemini key
-3. Redeploy if the first deploy finished before the variable was set.
+Push this folder to GitHub and connect the repository to Netlify. AI Gateway must be enabled and a production deployment must exist for automatic credentials to be available. No manually configured provider key is required.
 
 ## 3. Open your site
 Ask a question. Answers come from `/api/chat` (server holds the key).
